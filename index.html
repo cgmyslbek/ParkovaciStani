@@ -102,26 +102,58 @@ h1 {
   </div>
 
   <script>
-    const topRowSpots = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39];
-    const bottomRowSpots = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+  const labeledSpots = {
+    1: 'gastro',
+    2: 'EDM',
+    19: 'úklid',
+    21: 'gastro',
+    36: 'taxi',
+  };
 
-    function createSpot(number) {
-      const div = document.createElement('div');
-      div.classList.add('spot');
-      div.textContent = number;
+  const bottomRowSpots = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  const topRowSpots = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39];
 
-      div.addEventListener('click', () => {
-        div.classList.toggle('occupied');
-      });
+  const createSpot = (num, isOccupied = false) => {
+    const div = document.createElement('div');
+    div.className = 'spot';
+    div.dataset.spot = num;
 
-      return div;
+    if (isOccupied) div.classList.add('occupied');
+
+    const number = document.createElement('div');
+    number.textContent = num;
+    div.appendChild(number);
+
+    if (labeledSpots[num]) {
+      const label = document.createElement('div');
+      label.className = 'label';
+      label.textContent = labeledSpots[num];
+      div.appendChild(label);
     }
 
-    const topRow = document.getElementById('top-row');
-    const bottomRow = document.getElementById('bottom-row');
+    div.onclick = () => {
+      div.classList.toggle('occupied');
+    };
 
-    topRowSpots.forEach(n => topRow.appendChild(createSpot(n)));
-    bottomRowSpots.forEach(n => bottomRow.appendChild(createSpot(n)));
-  </script>
+    return div;
+  };
+
+  const renderGarage = () => {
+    const bottomRow = document.getElementById('row-bottom');
+    bottomRow.innerHTML = '';
+    bottomRowSpots.forEach(num => {
+      bottomRow.appendChild(createSpot(num));
+    });
+
+    const topRow = document.getElementById('row-top');
+    topRow.innerHTML = '';
+    topRowSpots.forEach(num => {
+      topRow.appendChild(createSpot(num));
+    });
+  };
+
+  window.onload = renderGarage;
+</script>
+
 </body>
 </html>
