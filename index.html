@@ -45,10 +45,14 @@ h1 {
 
 .row {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
   gap: 10px;
+  overflow-x: auto;
+  padding: 10px 0;
+  white-space: nowrap;
+  justify-content: flex-start;
 }
+
 
 .spot {
   width: 60px;
