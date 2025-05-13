@@ -135,18 +135,18 @@ h1 {
   };
 
   const renderGarage = () => {
-    const bottomRow = document.getElementById('row-bottom');
-    bottomRow.innerHTML = '';
-    bottomRowSpots.forEach(num => {
-      bottomRow.appendChild(createSpot(num));
-    });
+  const bottomRow = document.getElementById('bottom-row');  // FIXED
+  bottomRow.innerHTML = '';
+  bottomRowSpots.forEach(num => {
+    bottomRow.appendChild(createSpot(num));
+  });
 
-    const topRow = document.getElementById('row-top');
-    topRow.innerHTML = '';
-    topRowSpots.forEach(num => {
-      topRow.appendChild(createSpot(num));
-    });
-  };
+  const topRow = document.getElementById('top-row');  // FIXED
+  topRow.innerHTML = '';
+  topRowSpots.forEach(num => {
+    topRow.appendChild(createSpot(num));
+  });
+};
 
   window.onload = renderGarage;
 </script>
